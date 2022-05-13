@@ -166,17 +166,22 @@
 }
 
 .pfpImageBG {
-	width:100%;
-	height:100%;
-	background: url('https://i.imgur.com/r82oSu3.jpeg');
+	background: url('https://i.imgur.com/S2obN9I.jpeg');
 	background-repeat: no-repeat;
-	background-size: fill;
+	background-size: cover;
 	background-position: center;
+	vertical-align: middle;
+
 }
 
+.bgd{
+	background-color:#58595b;
+}
+
+
 .pfpImage {
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 150px;
 	display: inline-block;
 	color: black;
 	text-align: center;
@@ -188,16 +193,12 @@
 	user-select: none;
 	background:
 		url('https://www.pngmart.com/files/21/Account-User-PNG-Photo.png');
-	background-repeat: no-repeat;
-	background-size: fill;
 	background-position: center;
+	background-repeat: no-repeat;
 	border: 2px solid;
 	border-color: #171717;
-	font-size: 1rem;
-	border-radius: 1rem;
 	transition: color .15s ease-in-out, background-color .15s ease-in-out,
 		border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-	background-color: #6C6E7A;
 }
 
 @media only screen and (min-width: 1200px) {

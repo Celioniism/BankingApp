@@ -6,27 +6,30 @@
 
 <style>
 body {
-	background-color: #696b6e;
+	background-color: #58595b;
+}
+
+.center {
+	text-align: center;
 }
 </style>
 <body>
 	<header th:user="userprofile">
-		<div th:insert="fragments/minimalheader :: minimalheader"></div>
+		<div th:insert="fragments/minimalheader :: profileheader"></div>
 
 
 		<div class="container-lg g-0">
-			<img src="/icons/pfp.png" class="w-100 pfpImageBG"
-				style="min-height: 300px; height: auto; max-height: 300px; object-fit: cover; object-position: 50% 60%; filter: blur(1.5px);">
+			<img class="w-100 pfpImageBG"
+				style="min-height: 300px; height: auto; max-height: 300px; object-fit: cover; object-position: 50% 60%; filter: blur(1px);">
 			<div class="mx-auto pt-5 pb-3">
 				<div class="d-flex justify-content-center"
 					style="position: relative">
 					<div style="position: absolute; transform: translateY(-100%);">
-						<img src="/icons/pfp.png"
-							style="border-color: var(- -body-background) !important; object-fit: cover; width: 150px; height: 150px;"
-							class="pfpImage figure-img rounded-circle border border-5"/>
+						<img style="width: 150px; height: 150px;"
+							class="pfpImage figure-img rounded-circle border border-5" />
 						<div style="position: absolute; left: 70%; top: 70%;">
 							<div class="rounded-circle border border-5"
-								style="border-color:black; width: 35px; height: 35px; background-color: gray;"></div>
+								style="border-color: black; width: 35px; height: 35px; background-color: #91ff41;"></div>
 						</div>
 					</div>
 					<div class="py-2">
@@ -40,58 +43,69 @@ body {
 			<div class="row g-3">
 				<div class="col-sm-12 col-md-6">
 					<div class="shadow p-3">
-						<h3>About</h3>
-						<p></p>
-					</div>
-					<div class="shadow p-3">
-						<h3>Recently Watched</h3>
+						<div id="accordion">
+							<div class="card bgd" style="background-color: #69696c;">
+								<div class="card-header" id="headingOne">
+									<h5 class="mb-0">
+										<button class="btn btn-link collapsed" data-toggle="collapse"
+											data-target="#collapseOne" aria-expanded="false"
+											aria-controls="collapseOne">View Account & Routing
+											number</button>
+									</h5>
+								</div>
 
-						<div class="media-collection-sm carousel">
-
-							<div class="carousel-cell list-item z-index-controller"></div>
-
+								<div id="collapseOne" class="collapse "
+									aria-labelledby="headingOne" data-parent="#accordion">
+									<div class="row g-3">
+										<div class="col-sm-6">
+											<div class="card" style="background-color: #69696c;">
+												<div class="card-body">
+													<h5 class="card-title">119-445-2229</h5>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="card" style="background-color: #69696c;">
+												<div class="card-body">
+													<h5 class="card-title">12002003</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-
-					</div>
-					<div class="shadow p-3">
-						<h3>List</h3>
-
-						<div class="media-collection-sm carousel">
-
-							<div class="carousel-cell list-item z-index-controller"></div>
-
-						</div>
-
-						<h4 class="text-muted text-center">Empty</h4>
-
 					</div>
 				</div>
-				<div class="col-12 col-md-6">
+				<div class="col-sm-12 col-md-6">
 					<div class="shadow p-3">
-						<h3 style="padding-bottom: 10px">Badges</h3>
-
-						<div class="poster-container">
-							<div class="img-container">
-
-								<!-- <img class=" poster lazyload" src="/assets/img/filler.png" data-src=""> -->
+						<div class="card" style="background-color: #69696c;">
+							<div class="card-body">
+								<h5 class="card-title">Account settings</h5>
+								<p class="card-text">Edit your account details</p>
+								<a href="#" class="btn btn-primary"
+									style="background-color: #6C6E7A;">Edit</a>
 							</div>
-							<div class="colored-background"></div>
-							<div class="border-glow"></div>
-							<div class="overlay-components">
-								<button
-									class="btn btn-lg btn-circle centered transparent remove-focus-border "
-									onclick="event.stopImmediatePropagation(); "></button>
-							</div>
-
 						</div>
-
-					</div>
-					<div class="shadow p-3">
-						<h3>Watch Statistics</h3>
-						<canvas id="myChart"></canvas>
 					</div>
 				</div>
 			</div>
+
+			<div class="shadow p-3 container center">
+				<a
+					style="margin: 0 auto; text-align: center; font-size: 14; vertical-align: middle; font-weight: 500; padding-bottom: 12px"
+					class="btn btn-custom text-shadowbtn">Logout</a>
+
+				<div class="media-collection-sm carousel">
+
+					<div class="carousel-cell list-item z-index-controller"></div>
+
+				</div>
+
+
+			</div>
+		</div>
+
 		</div>
 
 
