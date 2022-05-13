@@ -13,30 +13,30 @@ public class UserInfoFactory {
 	private String UserName;
 	private String Password;
 	private String FullName;
-	private int AcountNumber;
+	private int AccountNumber;
 	
 	private int BeneficiaryId;
 	
 	private String SecurityQuestion;
 	
-	private String SercurityAnswer;
+	private String SecurityAnswer;
 
 	public UserInfoFactory() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserInfoFactory(int userId, String userName, String password, String fullName, int acountNumber,
-			int beneficiaryId, String securityQuestion, String sercurityAnswer) {
+	public UserInfoFactory(int userId, String userName, String password, String fullName, int accountNumber,
+			int beneficiaryId, String securityQuestion, String securityAnswer) {
 		super();
 		UserId = userId;
 		UserName = userName;
 		Password = password;
 		FullName = fullName;
-		AcountNumber = acountNumber;
+		AccountNumber = accountNumber;
 		BeneficiaryId = beneficiaryId;
 		SecurityQuestion = securityQuestion;
-		SercurityAnswer = sercurityAnswer;
+		SecurityAnswer = securityAnswer;
 	}
 
 	public int getUserId() {
@@ -71,12 +71,12 @@ public class UserInfoFactory {
 		FullName = fullName;
 	}
 
-	public int getAcountNumber() {
-		return AcountNumber;
+	public int getAccountNumber() {
+		return AccountNumber;
 	}
 
-	public void setAcountNumber(int acountNumber) {
-		AcountNumber = acountNumber;
+	public void setAccountNumber(int accountNumber) {
+		AccountNumber = accountNumber;
 	}
 
 	public int getBeneficiaryId() {
@@ -95,12 +95,12 @@ public class UserInfoFactory {
 		SecurityQuestion = securityQuestion;
 	}
 
-	public String getSercurityAnswer() {
-		return SercurityAnswer;
+	public String getSecurityAnswer() {
+		return SecurityAnswer;
 	}
 
-	public void setSercurityAnswer(String sercurityAnswer) {
-		SercurityAnswer = sercurityAnswer;
+	public void setSecurityAnswer(String securityAnswer) {
+		SecurityAnswer = securityAnswer;
 	}
 	
 	
