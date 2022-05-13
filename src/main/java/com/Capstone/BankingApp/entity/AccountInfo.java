@@ -14,30 +14,32 @@ import javax.persistence.ManyToMany;
 
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 @Entity
 public class AccountInfo {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int UserId;
-
+	
 	private int AccountNumber;
-
+	
 	private int BeneficiaryId;
-
+	
 	private String SecurityQuestion;
-
+	
 	private String SecurityAnswer;
-
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-
+	
+	@ManyToMany(fetch=FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	
 	private Set<GeneralStaff> staff;
+	
+	
+	
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "accountInfo_cards_jointb", joinColumns = @JoinColumn(name = "userId"))
+	@JoinTable(name="accountInfo_cards_jointb", joinColumns = @JoinColumn(name="userId"))
 	private Set<Cards> card;
-
+	
 	@OneToOne
 	private User user;
 
@@ -47,7 +49,7 @@ public class AccountInfo {
 	}
 
 	public AccountInfo(int userId, int accountNumber, int beneficiaryId, String securityQuestion,
-			String securityAnswer) {
+					   String securityAnswer) {
 		super();
 		UserId = userId;
 		AccountNumber = accountNumber;
@@ -133,5 +135,10 @@ public class AccountInfo {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+	
+	
+	
 
 }
