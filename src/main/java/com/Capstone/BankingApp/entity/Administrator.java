@@ -1,5 +1,5 @@
 package com.Capstone.BankingApp.entity;
 
-public class Aministrator {
+public class Administrator {
 
 }
