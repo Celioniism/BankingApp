@@ -21,13 +21,13 @@ public class AccountInfo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int UserId;
 	
-	private int AcountNumber;
+	private int AccountNumber;
 	
 	private int BeneficiaryId;
 	
 	private String SecurityQuestion;
 	
-	private String SercurityAnswer;
+	private String SecurityAnswer;
 	
 	@ManyToMany(fetch=FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	
@@ -48,28 +48,28 @@ public class AccountInfo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AccountInfo(int userId, int acountNumber, int beneficiaryId, String securityQuestion,
-			String sercurityAnswer) {
+	public AccountInfo(int userId, int accountNumber, int beneficiaryId, String securityQuestion,
+					   String securityAnswer) {
 		super();
 		UserId = userId;
-		AcountNumber = acountNumber;
+		AccountNumber = accountNumber;
 		BeneficiaryId = beneficiaryId;
 		SecurityQuestion = securityQuestion;
-		SercurityAnswer = sercurityAnswer;
+		SecurityAnswer = securityAnswer;
 	}
 
-	public AccountInfo(int acountNumber, int beneficiaryId) {
+	public AccountInfo(int accountNumber, int beneficiaryId) {
 		super();
-		AcountNumber = acountNumber;
+		AccountNumber = accountNumber;
 		BeneficiaryId = beneficiaryId;
 	}
 
-	public AccountInfo(int acountNumber, int beneficiaryId, String securityQuestion, String sercurityAnswer) {
+	public AccountInfo(int accountNumber, int beneficiaryId, String securityQuestion, String securityAnswer) {
 		super();
-		AcountNumber = acountNumber;
+		AccountNumber = accountNumber;
 		BeneficiaryId = beneficiaryId;
 		SecurityQuestion = securityQuestion;
-		SercurityAnswer = sercurityAnswer;
+		SecurityAnswer = securityAnswer;
 	}
 
 	public int getUserId() {
@@ -80,12 +80,12 @@ public class AccountInfo {
 		UserId = userId;
 	}
 
-	public int getAcountNumber() {
-		return AcountNumber;
+	public int getAccountNumber() {
+		return AccountNumber;
 	}
 
-	public void setAcountNumber(int acountNumber) {
-		AcountNumber = acountNumber;
+	public void setAccountNumber(int accountNumber) {
+		AccountNumber = accountNumber;
 	}
 
 	public int getBeneficiaryId() {
@@ -104,12 +104,12 @@ public class AccountInfo {
 		SecurityQuestion = securityQuestion;
 	}
 
-	public String getSercurityAnswer() {
-		return SercurityAnswer;
+	public String getSecurityAnswer() {
+		return SecurityAnswer;
 	}
 
-	public void setSercurityAnswer(String sercurityAnswer) {
-		SercurityAnswer = sercurityAnswer;
+	public void setSecurityAnswer(String securityAnswer) {
+		SecurityAnswer = securityAnswer;
 	}
 
 	public Set<GeneralStaff> getStaff() {
