@@ -4,80 +4,91 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity
-public class User {
+public class Administrator {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int UserId;
+	private int AdminId;
+	
 	private String UserName;
-	private String Password;
+	
+	private String UserPassword;
+	
 	private String FullName;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private AccountInfo accountinfo;
-	@ManyToMany(fetch=FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="admin_staff_jointb", joinColumns = @JoinColumn(name="adminId"))
 	private Set<GeneralStaff> generalStaff;
-	public User() {
+
+	public Administrator() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(int userId, String userName, String password, String fullName) {
+
+	public Administrator(int adminId, String userName, String userPassword, String fullName) {
 		super();
-		UserId = userId;
+		AdminId = adminId;
 		UserName = userName;
-		Password = password;
+		UserPassword = userPassword;
 		FullName = fullName;
 	}
-	public User(String userName, String password, String fullName) {
+
+	public Administrator(String userName, String userPassword, String fullName) {
 		super();
 		UserName = userName;
-		Password = password;
+		UserPassword = userPassword;
 		FullName = fullName;
 	}
-	public int getUserId() {
-		return UserId;
+
+	public int getAdminId() {
+		return AdminId;
 	}
-	public void setUserId(int userId) {
-		UserId = userId;
+
+	public void setAdminId(int adminId) {
+		AdminId = adminId;
 	}
+
 	public String getUserName() {
 		return UserName;
 	}
+
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
-	public String getPassword() {
-		return Password;
+
+	public String getUserPassword() {
+		return UserPassword;
 	}
-	public void setPassword(String password) {
-		Password = password;
+
+	public void setUserPassword(String userPassword) {
+		UserPassword = userPassword;
 	}
+
 	public String getFullName() {
 		return FullName;
 	}
+
 	public void setFullName(String fullName) {
 		FullName = fullName;
 	}
-	public AccountInfo getAccountinfo() {
-		return accountinfo;
-	}
-	public void setAccountinfo(AccountInfo accountinfo) {
-		this.accountinfo = accountinfo;
-	}
+
 	public Set<GeneralStaff> getGeneralStaff() {
 		return generalStaff;
 	}
+
 	public void setGeneralStaff(Set<GeneralStaff> generalStaff) {
 		this.generalStaff = generalStaff;
 	}
 	
 	
 	
+
 }

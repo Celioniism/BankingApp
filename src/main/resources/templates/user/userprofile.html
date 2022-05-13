@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org/">
+<head th:insert="fragments/head :: head">
+
+</head>
+
+<style>
+body {
+	background-color: #696b6e;
+}
+</style>
+<body>
+	<header th:user="userprofile">
+		<div th:insert="fragments/minimalheader :: minimalheader"></div>
+
+
+		<div class="container-lg g-0">
+			<img src="/icons/pfp.png" class="w-100 pfpImageBG"
+				style="min-height: 300px; height: auto; max-height: 300px; object-fit: cover; object-position: 50% 60%; filter: blur(1.5px);">
+			<div class="mx-auto pt-5 pb-3">
+				<div class="d-flex justify-content-center"
+					style="position: relative">
+					<div style="position: absolute; transform: translateY(-100%);">
+						<img src="/icons/pfp.png"
+							style="border-color: var(- -body-background) !important; object-fit: cover; width: 150px; height: 150px;"
+							class="pfpImage figure-img rounded-circle border border-5"/>
+						<div style="position: absolute; left: 70%; top: 70%;">
+							<div class="rounded-circle border border-5"
+								style="border-color:black; width: 35px; height: 35px; background-color: gray;"></div>
+						</div>
+					</div>
+					<div class="py-2">
+						<h2 class="text-center mb-0"></h2>
+						<h6 class="text-center text-muted"></h6>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-lg" style="position: relative;">
+			<div class="row g-3">
+				<div class="col-sm-12 col-md-6">
+					<div class="shadow p-3">
+						<h3>About</h3>
+						<p></p>
+					</div>
+					<div class="shadow p-3">
+						<h3>Recently Watched</h3>
+
+						<div class="media-collection-sm carousel">
+
+							<div class="carousel-cell list-item z-index-controller"></div>
+
+						</div>
+
+					</div>
+					<div class="shadow p-3">
+						<h3>List</h3>
+
+						<div class="media-collection-sm carousel">
+
+							<div class="carousel-cell list-item z-index-controller"></div>
+
+						</div>
+
+						<h4 class="text-muted text-center">Empty</h4>
+
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="shadow p-3">
+						<h3 style="padding-bottom: 10px">Badges</h3>
+
+						<div class="poster-container">
+							<div class="img-container">
+
+								<!-- <img class=" poster lazyload" src="/assets/img/filler.png" data-src=""> -->
+							</div>
+							<div class="colored-background"></div>
+							<div class="border-glow"></div>
+							<div class="overlay-components">
+								<button
+									class="btn btn-lg btn-circle centered transparent remove-focus-border "
+									onclick="event.stopImmediatePropagation(); "></button>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="shadow p-3">
+						<h3>Watch Statistics</h3>
+						<canvas id="myChart"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</header>
+</body>
+</html>
