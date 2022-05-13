@@ -3,5 +3,5 @@
 	<h1 align="center">Banking App</h1>
     <p align="center">
     </p>
-    <img src="https://imgur.com/a/X9kcT0s"> </img>
+    <img src="https://i.imgur.com/CZqbsbG.png"> </img>
 </p>
