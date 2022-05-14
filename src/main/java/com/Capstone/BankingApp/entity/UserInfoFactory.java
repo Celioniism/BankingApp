@@ -5,7 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserInfoFactory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,31 +20,13 @@ public class UserInfoFactory {
 	private String UserName;
 	private String Password;
 	private String FullName;
-	private int AccountNumber;
-	
+	private Long AccountNumber;
+
 	private int BeneficiaryId;
-	
+
 	private String SecurityQuestion;
-	
+
 	private String SecurityAnswer;
-
-	public UserInfoFactory() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UserInfoFactory(int userId, String userName, String password, String fullName, int accountNumber,
-			int beneficiaryId, String securityQuestion, String securityAnswer) {
-		super();
-		UserId = userId;
-		UserName = userName;
-		Password = password;
-		FullName = fullName;
-		AccountNumber = accountNumber;
-		BeneficiaryId = beneficiaryId;
-		SecurityQuestion = securityQuestion;
-		SecurityAnswer = securityAnswer;
-	}
 
 	public int getUserId() {
 		return UserId;
@@ -71,11 +60,11 @@ public class UserInfoFactory {
 		FullName = fullName;
 	}
 
-	public int getAccountNumber() {
+	public Long getAccountNumber() {
 		return AccountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(Long accountNumber) {
 		AccountNumber = accountNumber;
 	}
 
@@ -102,8 +91,5 @@ public class UserInfoFactory {
 	public void setSecurityAnswer(String securityAnswer) {
 		SecurityAnswer = securityAnswer;
 	}
-	
-	
-	
 
 }

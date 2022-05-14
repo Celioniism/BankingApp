@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org/">
+
+<head th:insert="/fragments/head :: head">
+
+</head>
+
+<body>
+
+	<div class="formout">
+		<table class="table table-dark table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col">UID</th>
+					<th scope="col">full name</th>
+					<th scope="col">pass</th>
+					<th scope="col">uname</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="User : ${users}">
+					<td th:text="${User.UserId}"></td>
+					<td th:text="${User.FullName}"></td>
+					<td th:text="${User.Password}"></td>
+					<td th:text="${User.UserName}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</body>
+</html>

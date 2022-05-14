@@ -11,66 +11,42 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AccountInfo {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int UserId;
-	
-	private int AccountNumber;
-	
+
+	private Long AccountNumber;
+
 	private int BeneficiaryId;
-	
+
 	private String SecurityQuestion;
-	
+
 	private String SecurityAnswer;
-	
-	@ManyToMany(fetch=FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-	
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+
 	private Set<GeneralStaff> staff;
-	
-	
-	
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="accountInfo_cards_jointb", joinColumns = @JoinColumn(name="userId"))
+	@JoinTable(name = "accountInfo_cards_jointb", joinColumns = @JoinColumn(name = "userId"))
 	private Set<Cards> card;
-	
+
 	@OneToOne
 	private User user;
 
-	public AccountInfo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	public AccountInfo(int userId, int accountNumber, int beneficiaryId, String securityQuestion,
-					   String securityAnswer) {
-		super();
-		UserId = userId;
-		AccountNumber = accountNumber;
-		BeneficiaryId = beneficiaryId;
-		SecurityQuestion = securityQuestion;
-		SecurityAnswer = securityAnswer;
-	}
-
-	public AccountInfo(int accountNumber, int beneficiaryId) {
-		super();
-		AccountNumber = accountNumber;
-		BeneficiaryId = beneficiaryId;
-	}
-
-	public AccountInfo(int accountNumber, int beneficiaryId, String securityQuestion, String securityAnswer) {
-		super();
-		AccountNumber = accountNumber;
-		BeneficiaryId = beneficiaryId;
-		SecurityQuestion = securityQuestion;
-		SecurityAnswer = securityAnswer;
-	}
 
 	public int getUserId() {
 		return UserId;
@@ -80,11 +56,11 @@ public class AccountInfo {
 		UserId = userId;
 	}
 
-	public int getAccountNumber() {
+	public Long getAccountNumber() {
 		return AccountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(Long accountNumber) {
 		AccountNumber = accountNumber;
 	}
 
@@ -135,10 +111,5 @@ public class AccountInfo {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
-	
-	
 
 }
