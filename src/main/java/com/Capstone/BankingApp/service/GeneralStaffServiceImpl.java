@@ -31,4 +31,10 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
     public void editStaffFullName(int staffId, GeneralStaff generalStaff) {
 
     }
+
+	@Override
+	public void approveUser() {
+		// TODO Auto-generated method stub
+		
+	}
 }

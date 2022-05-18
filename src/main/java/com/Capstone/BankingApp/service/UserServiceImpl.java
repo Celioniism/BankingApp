@@ -32,4 +32,22 @@ public class UserServiceImpl implements UserService{
     public void editFullName(int userId, User user) {
 
     }
+
+	@Override
+	public void saveUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void authenticateUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public User getUser(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

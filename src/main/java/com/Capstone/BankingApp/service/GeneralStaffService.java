@@ -7,4 +7,5 @@ public interface GeneralStaffService {
     public void editStaffUsername(int staffId, GeneralStaff generalStaff);
     public void editStaffPassword(int staffId, GeneralStaff generalStaff);
     public void editStaffFullName(int staffId, GeneralStaff generalStaff);
+    public void approveUser();
 }
