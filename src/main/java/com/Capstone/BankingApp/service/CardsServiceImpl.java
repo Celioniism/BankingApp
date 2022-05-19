@@ -15,4 +15,18 @@ public class CardsServiceImpl implements CardsService{
     public Cards showCardDetails(int associatedId) {
         return null;
     }
+
+
+	@Override
+	public void registerCard(Cards card) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteCard(long cardnumber) {
+		// TODO Auto-generated method stub
+		
+	}
 }

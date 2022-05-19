@@ -13,10 +13,7 @@ public class UserServiceImpl implements UserService{
     UserRepo userRepo;
 
 
-    @Override
-    public User showRegularUserInfo(int userId) {
-        return null;
-    }
+  
 
     @Override
     public void editUsername(int userId, User user) {
@@ -32,4 +29,41 @@ public class UserServiceImpl implements UserService{
     public void editFullName(int userId, User user) {
 
     }
+
+	@Override
+	public void saveUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean authenticateUser(String userName, String password) {
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public User getUserById(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateUser(int userId, User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void deleteBeneficiary(int beneficiaryId, int benefactorId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addBeneficiary(int beneficiaryId, int benefactorId) {
+		// TODO Auto-generated method stub
+		
+	}
 }

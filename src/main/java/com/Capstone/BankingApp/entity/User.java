@@ -8,7 +8,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -19,22 +22,23 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int UserId;
+	private int userId;
 	private String UserName;
 	private String Password;
 	private String FullName;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private AccountInfo accountinfo;
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<AccountInfo> accountinfo;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<GeneralStaff> generalStaff;
 
 	public User(int userId, String userName, String password, String fullName) {
 		super();
-		UserId = userId;
+		userId = userId;
 		UserName = userName;
 		Password = password;
 		FullName = fullName;
@@ -47,12 +51,14 @@ public class User {
 		FullName = fullName;
 	}
 
+
+
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(int userId) {
-		UserId = userId;
+		userId = userId;
 	}
 
 	public String getUserName() {
@@ -79,12 +85,12 @@ public class User {
 		FullName = fullName;
 	}
 
-	public AccountInfo getAccountinfo() {
+	public Set<AccountInfo> getAccountinfo() {
 		return accountinfo;
 	}
 
 	public void setAccountinfo(AccountInfo accountinfo) {
-		this.accountinfo = accountinfo;
+		this.accountinfo = (Set<AccountInfo>) accountinfo;
 	}
 
 	public Set<GeneralStaff> getGeneralStaff() {

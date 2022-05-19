@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -24,11 +25,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AccountInfo {
 
+	
+	
 	@Id
-	private int UserId;
-
 	private Long AccountNumber;
-
+	private int UserId;
 	private int BeneficiaryId;
 
 	private String SecurityQuestion;
@@ -43,7 +44,7 @@ public class AccountInfo {
 	@JoinTable(name = "accountInfo_cards_jointb", joinColumns = @JoinColumn(name = "userId"))
 	private Set<Cards> card;
 
-	@OneToOne
+	@ManyToOne
 	private User user;
 
 
