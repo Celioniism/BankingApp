@@ -1,5 +1,6 @@
 package com.Capstone.BankingApp.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
+
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +31,30 @@ public class User {
 	private String UserName;
 	private String Password;
 	private String FullName;
+	
+	
+	private List<Integer> BenefactorList;
+	private List<Integer> BeneficiaryList;
+	
+	public List<Integer> getBenefactorList() {
+		return BenefactorList;
+	}
+
+	public void setBenefactorList(List<Integer> benefactorList) {
+		BenefactorList = benefactorList;
+	}
+
+	public List<Integer> getBeneficiaryList() {
+		return BeneficiaryList;
+	}
+
+	public void setBeneficiaryList(List<Integer> beneficiaryList) {
+		BeneficiaryList = beneficiaryList;
+	}
+
+	public void setAccountinfo(Set<AccountInfo> accountinfo) {
+		this.accountinfo = accountinfo;
+	}
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<AccountInfo> accountinfo;
@@ -38,7 +63,7 @@ public class User {
 
 	public User(int userId, String userName, String password, String fullName) {
 		super();
-		userId = userId;
+		this.userId = userId;
 		UserName = userName;
 		Password = password;
 		FullName = fullName;
@@ -51,14 +76,16 @@ public class User {
 		FullName = fullName;
 	}
 
-
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getUserId() {
 		return userId;
 	}
 
 	public void setUserId(int userId) {
-		userId = userId;
+		this.userId = userId;
 	}
 
 	public String getUserName() {
