@@ -89,8 +89,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<GeneralStaff> getAllStaff() {
-		administratorRepo.findAll();
-		return null;
+		return generalStaffRepo.findAll();
 	}
 
 	@Override
