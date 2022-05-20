@@ -2,8 +2,10 @@ package com.Capstone.BankingApp.entity;
 
 import java.util.List;
 import java.util.Set;
-
+import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,7 +34,11 @@ public class User {
 	private Set<AccountInfo> accountinfo;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<GeneralStaff> generalStaff;
+	@Column
+    @ElementCollection(targetClass=Integer.class)
 	private List<Integer> BenefactorList;
+	@Column
+    @ElementCollection(targetClass=Integer.class)
 	private List<Integer> BeneficiaryList;
 	
 	public List<Integer> getBenefactorList() {
@@ -58,7 +64,9 @@ public class User {
 		Password = password;
 		FullName = fullName;
 	}
-
+public User() {
+		// TODO Auto-generated constructor stub
+	}
 	public User(String userName, String password, String fullName) {
 		super();
 		UserName = userName;

@@ -62,7 +62,7 @@ public class AccountInfo {
 	}
 
 	public void setAccountNumber(Long accountNumber) {
-		AccountNumber = accountNumber;
+	AccountNumber = accountNumber;
 	}
 
 	public int getBeneficiaryId() {

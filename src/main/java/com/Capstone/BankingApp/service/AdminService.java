@@ -18,6 +18,8 @@ public interface AdminService {
     
     public List<GeneralStaff> getAllStaff();
     
-    public void EnableStaff();
+    public void EnableStaff(int staffId);
+
+    public void DisableStaff(int staffId);
     
 }

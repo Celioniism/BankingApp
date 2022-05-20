@@ -19,6 +19,10 @@ public class GeneralStaff {
 	private String UserName;
 	private String Password;
 	private String FullName;
+
+	private enum enableDisableStaff {
+		ENABLE, DISABLE;
+	};
 	
 	@ManyToOne
 	private Administrator admin;
@@ -68,6 +72,16 @@ public class GeneralStaff {
 	public void setFullName(String fullName) {
 		FullName = fullName;
 	}
+
+
+	public void setEnableStaff() {
+		enableDisableStaff enable = enableDisableStaff.ENABLE;
+	}
+
+	public void setDisableStaff() {
+		enableDisableStaff disable = enableDisableStaff.DISABLE;
+	}
+
 	public Administrator getAdmin() {
 		return admin;
 	}

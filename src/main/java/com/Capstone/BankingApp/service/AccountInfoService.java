@@ -7,17 +7,16 @@ import com.Capstone.BankingApp.entity.User;
 
 public interface AccountInfoService {
     
-    public void editSecurityQuestion(int accountNo);
-    public void editSecurityAnswer(int accountNo);
+    public void editSecurityQuestion(int accountNo, AccountInfo accountInfo);
+    public void editSecurityAnswer(int accountNo, AccountInfo accountInfo);
     
-    public boolean approveCustomer(int accountNo);
+    public boolean validateCustomer(String userName, String password);
     
-    public List<AccountInfo>getAllAccounts(int userID, List<AccountInfo> Accountinfo);
+    public List<AccountInfo>getAllAccounts();
     
     public AccountInfo getAccountByAcctNo(int accountNo);
-    
-    
-    public void createAccount(int userID, AccountInfo accountinfo);
+
+    public void createAccount(AccountInfo accountInfo);
     
 }
 
