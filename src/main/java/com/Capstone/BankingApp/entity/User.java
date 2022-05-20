@@ -1,7 +1,7 @@
 package com.Capstone.BankingApp.entity;
 
 import java.util.Set;
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -60,7 +60,9 @@ public class User {
 		Password = password;
 		FullName = fullName;
 	}
-
+public User() {
+		// TODO Auto-generated constructor stub
+	}
 	public User(String userName, String password, String fullName) {
 		super();
 		UserName = userName;
