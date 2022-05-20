@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ public class Cards {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int AssociatedId;
-	@Id
+	
 	private long CardNumber;
 	
 	private int Exp;
@@ -35,7 +35,7 @@ public class Cards {
 		};
 		
 	@OneToMany(cascade = CascadeType.ALL)
-	private Transactions transaction;
+	private Set<Transactions> transaction;
 	
 	@ManyToOne
 	private AccountInfo acountInfo;
