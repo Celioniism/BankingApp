@@ -11,7 +11,7 @@ package com.Capstone.BankingApp.service;
 
 public interface TransactionsService {
 	
-	public void Transfer(long fromCardNo, long toCardNo, double amount);
+	public String Transfer(long fromCardNo, long toCardNo, double amount, String reference);
 	
 	
 	

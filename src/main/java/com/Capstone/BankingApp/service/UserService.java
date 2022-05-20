@@ -1,8 +1,6 @@
 package com.Capstone.BankingApp.service;
 
-import com.Capstone.BankingApp.entity.Beneficiary;
 import com.Capstone.BankingApp.entity.User;
-import com.Capstone.BankingApp.entity.UserInfoFactory;
 
 public interface UserService {
    

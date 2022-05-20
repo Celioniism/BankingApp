@@ -1,35 +1,52 @@
 package com.Capstone.BankingApp.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Transactions {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long transactionsNumber;
-    private Date date; 
-    private String reference; 
-    private double amount; 
-   //transaction type: enum 
-    
-	private enum transactionType {
-		  WITHDRAW,
-		  TRANSFER,
-		  DEPOSIT
-		};
+	private String date_and_time;
+	private String reference;
+	private double amount;
+	private String TransactionType;
+
+	enum transactionType {
+		WITHDRAW, TRANSFER, DEPOSIT
+	};
+
 	@ManyToOne
 	private Cards card;
+
+	public void setTransactionWithdraw() {
+		transactionType t1 = transactionType.WITHDRAW;
+		String tr = String.valueOf(t1);
+		this.TransactionType = tr;
+	}
+
+	public void setTransactionTransfer() {
+		transactionType t1 = transactionType.TRANSFER;
+		String tr = String.valueOf(t1);
+		this.TransactionType = tr;
+	}
+
+	public void setTransactionDeposit() {
+		transactionType t1 = transactionType.DEPOSIT;
+		String tr = String.valueOf(t1);
+		this.TransactionType = tr;
+	}
+
 }

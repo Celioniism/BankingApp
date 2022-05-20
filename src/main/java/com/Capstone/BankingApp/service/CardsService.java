@@ -8,4 +8,6 @@ public interface CardsService {
     public void registerCard(Cards card);
     
     public void deleteCard(long cardnumber);
+    
+    public Long generateCard();
 }

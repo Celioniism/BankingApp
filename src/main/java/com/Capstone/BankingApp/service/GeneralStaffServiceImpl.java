@@ -1,23 +1,22 @@
 package com.Capstone.BankingApp.service;
 
-import com.Capstone.BankingApp.entity.AccountInfo;
-import com.Capstone.BankingApp.entity.Benefactor;
-import com.Capstone.BankingApp.entity.GeneralStaff;
-import com.Capstone.BankingApp.entity.Transactions;
-import com.Capstone.BankingApp.entity.User;
-import com.Capstone.BankingApp.repository.GeneralStaffRepo;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.Capstone.BankingApp.entity.AccountInfo;
+import com.Capstone.BankingApp.entity.GeneralStaff;
+import com.Capstone.BankingApp.entity.Transactions;
+import com.Capstone.BankingApp.entity.User;
+import com.Capstone.BankingApp.repository.GeneralStaffRepo;
 
 @Service
 public class GeneralStaffServiceImpl implements GeneralStaffService{
 
     @Autowired
     GeneralStaffRepo generalStaffRepo;
-
+ 
 
     @Override
     public GeneralStaff showStaffInfo(int staffId) {
@@ -52,7 +51,7 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
 	}
 
 	@Override
-	public List<Benefactor> BeneficiaryToBeApproved() {
+	public List<User> BeneficiaryToBeApproved() {
 		// TODO Auto-generated method stub
 		return null;
 	}

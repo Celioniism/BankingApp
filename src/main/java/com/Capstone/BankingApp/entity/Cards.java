@@ -20,7 +20,7 @@ public class Cards {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int AssociatedId;
-	
+	@Id
 	private long CardNumber;
 	
 	private int Exp;

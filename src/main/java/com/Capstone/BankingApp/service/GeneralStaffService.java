@@ -3,8 +3,6 @@ package com.Capstone.BankingApp.service;
 import java.util.List;
 
 import com.Capstone.BankingApp.entity.AccountInfo;
-import com.Capstone.BankingApp.entity.Benefactor;
-import com.Capstone.BankingApp.entity.Beneficiary;
 import com.Capstone.BankingApp.entity.GeneralStaff;
 import com.Capstone.BankingApp.entity.Transactions;
 import com.Capstone.BankingApp.entity.User;
@@ -20,7 +18,7 @@ public interface GeneralStaffService {
     
     public List<Transactions> getTransactions(int acctId);
     
-    public List<Benefactor> BeneficiaryToBeApproved();
+    public List<User> BeneficiaryToBeApproved();
     
     public void approveBeneficiary(int userId);
     
