@@ -20,12 +20,13 @@ public class UserInfoFactoryServiceImpl implements UserInfoFactoryService {
 
 	@Autowired
 	UserRepo URepo;
-
+	@Autowired
+	UserInfoFactoryRepo UIRepo;
 	@Override
 	public UserInfoFactory showUserInfoFactoryDetails(int userId) {
-		User fu = URepo.getById(userId);
-
-		return null;
+		
+		return UIRepo.getById(userId);
+		
 	}
 
 	@Override
