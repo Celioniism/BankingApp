@@ -20,37 +20,37 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 
 	@Override
 	public boolean approveCustomer(int accountNo) {
-		// TODO Auto-generated method stub
+	
 		return false;
 	}
 
 	@Override
 	public List<AccountInfo> getAllAccounts(int userID, List<AccountInfo> Accountinfo) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 
 	@Override
 	public void editSecurityQuestion(int accountNo) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void editSecurityAnswer(int accountNo) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public AccountInfo getAccountByAcctNo(int accountNo) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 
 	@Override
 	public void createAccount(int userID, AccountInfo accountinfo) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 }

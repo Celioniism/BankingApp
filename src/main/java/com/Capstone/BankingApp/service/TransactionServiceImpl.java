@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.Capstone.BankingApp.entity.Cards;
 import com.Capstone.BankingApp.entity.Transactions;
-import com.Capstone.BankingApp.repository.CardNumberRepo;
+import com.Capstone.BankingApp.repository.CardsRepo;
 import com.Capstone.BankingApp.repository.TransactionsRepo;
 
 /**
@@ -21,7 +21,8 @@ import com.Capstone.BankingApp.repository.TransactionsRepo;
 public class TransactionServiceImpl implements TransactionsService {
 
 	@Autowired
-	CardNumberRepo CNR;
+	CardsRepo CR;
+	
 	@Autowired
 	TransactionsRepo TRR;
 
@@ -32,8 +33,9 @@ public class TransactionServiceImpl implements TransactionsService {
 		String CurrentDate = formatter.format(date);
 		
 		try {
-			Cards fromCard = CNR.getById(fromCardNo);
-			Cards toCard = CNR.getById(fromCardNo);
+			
+			Cards fromCard = CR.findCardByNumber(fromCardNo);
+			Cards toCard = CR.findCardByNumber(toCardNo);
 			double fcb, tcb;
 			fcb = fromCard.getBalance();
 			tcb = toCard.getBalance();
@@ -43,8 +45,8 @@ public class TransactionServiceImpl implements TransactionsService {
 				tcb = tcb + amount;
 				fromCard.setBalance(fcb);
 				toCard.setBalance(tcb);
-				CNR.save(fromCard);
-				CNR.save(toCard);
+				CR.save(fromCard);
+				CR.save(toCard);
 
 				Transactions fromtr = new Transactions();
 				fromtr.setAmount(0 - amount);

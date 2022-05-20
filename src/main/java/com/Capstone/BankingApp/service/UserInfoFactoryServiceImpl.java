@@ -10,6 +10,7 @@ import com.Capstone.BankingApp.entity.AccountInfo;
 import com.Capstone.BankingApp.entity.User;
 import com.Capstone.BankingApp.entity.UserInfoFactory;
 import com.Capstone.BankingApp.repository.AccountInfoRepo;
+import com.Capstone.BankingApp.repository.UserInfoFactoryRepo;
 import com.Capstone.BankingApp.repository.UserRepo;
 
 @Service
