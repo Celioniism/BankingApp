@@ -34,6 +34,24 @@ public class User {
 	private Set<AccountInfo> accountinfo;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<GeneralStaff> generalStaff;
+	private List<Integer> BenefactorList;
+	private List<Integer> BeneficiaryList;
+	
+	public List<Integer> getBenefactorList() {
+		return BenefactorList;
+	}
+
+	public void setBenefactorList(List<Integer> benefactorList) {
+		BenefactorList = benefactorList;
+	}
+
+	public List<Integer> getBeneficiaryList() {
+		return BeneficiaryList;
+	}
+
+	public void setBeneficiaryList(List<Integer> beneficiaryList) {
+		BeneficiaryList = beneficiaryList;
+	}
 
 	public User(int userId, String userName, String password, String fullName) {
 		super();
