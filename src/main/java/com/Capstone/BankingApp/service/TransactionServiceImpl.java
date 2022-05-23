@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 import com.Capstone.BankingApp.entity.Cards;
 import com.Capstone.BankingApp.entity.Transactions;
 import com.Capstone.BankingApp.repository.CardsRepo;
@@ -18,6 +18,7 @@ import com.Capstone.BankingApp.repository.TransactionsRepo;
  * @Date 19 May 2022
  *
  */
+@Service
 public class TransactionServiceImpl implements TransactionsService {
 
 	@Autowired
