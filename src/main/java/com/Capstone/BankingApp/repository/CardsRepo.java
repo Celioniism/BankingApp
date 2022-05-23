@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface CardsRepo extends JpaRepository<Cards, Integer> {
 	@Query(value = "SELECT * FROM Cards WHERE CardNumber = ?1", nativeQuery = true)
 	  Cards findCardByNumber(Long CardNumber);
+	@Query(value = "SELECT * FROM Cards WHERE associatedId = ?1", nativeQuery = true)
+	List<Cards> findAllUserCards(int associatedId);
 }
