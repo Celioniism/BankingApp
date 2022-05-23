@@ -26,7 +26,7 @@ public class UserInfoFactoryServiceImpl implements UserInfoFactoryService {
 	@Override
 	public UserInfoFactory showUserInfoFactoryDetails(int userId) {
 		
-		return UIRepo.getById(userId);
+		return UIRepo.findById(userId).get();
 		
 	}
 
