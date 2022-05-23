@@ -22,7 +22,7 @@ public class TransactionServiceImpl implements TransactionsService {
 
 	@Autowired
 	CardsRepo CR;
-	
+
 	@Autowired
 	TransactionsRepo TRR;
 
@@ -31,9 +31,9 @@ public class TransactionServiceImpl implements TransactionsService {
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		String CurrentDate = formatter.format(date);
-		
+
 		try {
-			
+
 			Cards fromCard = CR.findCardByNumber(fromCardNo);
 			Cards toCard = CR.findCardByNumber(toCardNo);
 			double fcb, tcb;
@@ -64,7 +64,6 @@ public class TransactionServiceImpl implements TransactionsService {
 				totr.setCard(toCard);
 				TRR.save(totr);
 				return "transfer success";
-
 			} else {
 				return "not enough funds";
 			}
@@ -73,5 +72,59 @@ public class TransactionServiceImpl implements TransactionsService {
 			e.printStackTrace();
 			return "card error";
 		}
+	}
+
+	@Override
+	public double Withdraw(double amount, long fromCardNo) {
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		String CurrentDate = formatter.format(date);
+
+		Cards fromCard = CR.findCardByNumber(fromCardNo);
+		double fcb;
+		fcb = fromCard.getBalance();
+		if (fcb >= amount) {
+			fcb = fcb - amount;
+			fromCard.setBalance(fcb);
+			CR.save(fromCard);
+
+			Transactions fromtr = new Transactions();
+			fromtr.setAmount(0 - amount);
+			fromtr.setReference("");
+			fromtr.setDate_and_time(CurrentDate);
+			fromtr.setTransactionWithdraw();
+			fromtr.setCard(fromCard);
+			TRR.save(fromtr);
+
+			double withdrawn = amount;
+			return withdrawn;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public double Deposit(double amount, long toCardNo) {
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		String CurrentDate = formatter.format(date);
+
+		Cards toCard = CR.findCardByNumber(toCardNo);
+		double tcb;
+		tcb = toCard.getBalance();
+		tcb = tcb + amount;
+		toCard.setBalance(tcb);
+		CR.save(toCard);
+
+		Transactions totr = new Transactions();
+		totr.setAmount(amount);
+		totr.setReference("");
+		totr.setDate_and_time(CurrentDate);
+		totr.setTransactionDeposit();
+		totr.setCard(toCard);
+		TRR.save(totr);
+
+		double deposited = amount;
+		return deposited;
 	}
 }
