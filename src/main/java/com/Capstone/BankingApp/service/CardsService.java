@@ -10,7 +10,7 @@ public interface CardsService {
     
     public void deleteCard(long cardnumber);
     
-    public Long generateCard();
+    public void generateCard(int associatedId, String Type);
 
     public List<Cards> showUserCardDetails(int associatedId);
 
