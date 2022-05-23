@@ -13,6 +13,8 @@ public interface TransactionsService {
 	
 	public String Transfer(long fromCardNo, long toCardNo, double amount, String reference);
 	
+	public double Withdraw(double amount, long fromCardNo);
+	public double Deposit(double amount, long toCardNo);
 	
 	
 
