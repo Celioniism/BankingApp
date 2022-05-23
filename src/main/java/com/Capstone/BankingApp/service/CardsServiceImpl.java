@@ -1,12 +1,12 @@
 package com.Capstone.BankingApp.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Capstone.BankingApp.entity.Cards;
-import com.Capstone.BankingApp.repository.AccountInfoRepo;
 import com.Capstone.BankingApp.repository.CardNumberRepo;
 import com.Capstone.BankingApp.repository.CardsRepo;
 
@@ -19,8 +19,8 @@ public class CardsServiceImpl implements CardsService {
 	CardNumberRepo CNR;
 
 	@Override
-	public Cards showCardDetails(int associatedId) {
-		Cards card = cardsRepo.getById(associatedId);
+	public List<Cards> showUserCardDetails(int associatedId) {
+		List<Cards> card = cardsRepo.findAllUserCards(associatedId);
 		return card;
 	}
 
@@ -31,7 +31,7 @@ public class CardsServiceImpl implements CardsService {
 
 	@Override
 	public void deleteCard(long cardnumber) {
-		Cards card = CNR.getById(cardnumber);
+		Cards card = CNR.findById(cardnumber).get();
 		CNR.delete(card);
 	}
 
@@ -52,5 +52,12 @@ public class CardsServiceImpl implements CardsService {
 		System.out.println(CardNum);
 		return CardNum;
 	}
+
+	@Override
+	public List<Cards> showAllCards() {
+		List<Cards> cards = cardsRepo.findAll();
+		return cards;
+	}
+
 
 }
