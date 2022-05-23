@@ -24,7 +24,7 @@ public class Transactions {
 	private double amount;
 	private String TransactionType;
 
-	enum transactionType {
+	private enum transactionType {
 		WITHDRAW, TRANSFER, DEPOSIT
 	};
 
@@ -47,6 +47,10 @@ public class Transactions {
 		transactionType t1 = transactionType.DEPOSIT;
 		String tr = String.valueOf(t1);
 		this.TransactionType = tr;
+	}
+	
+	public String getTransactionType() {
+		return this.TransactionType;
 	}
 
 }
