@@ -1,5 +1,7 @@
 package com.Capstone.BankingApp.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +38,22 @@ public class CardsServiceImpl implements CardsService {
 	}
 
 	@Override
-	public Long generateCard() {
+	public void generateCard(int associatedId, String Type) {
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/yy");
+		String CurrentDate = formatter.format(date);
+		String[] datechanges = CurrentDate.split("/", 2);
+		int[] dateint = new int[2];
+		int i = 0;
+		for (String dates : datechanges) {
+			dateint[i] = Integer.parseInt(dates);
+			i++;
+		}
+		dateint[2] = dateint[2] + 5;
+		String exp = "" + dateint[1] + "/" + dateint[2];
+		Cards newcard = new Cards();
+		int cvvmax = 999, cvvmin = 111;
+		int cvv = (int) Math.floor(Math.random() * (cvvmax - cvvmin + 1) + cvvmin);
 		int min = 123456;
 		int max = 999999;
 		int random1 = (int) Math.floor(Math.random() * (max - min + 1) + min);
@@ -50,7 +67,13 @@ public class CardsServiceImpl implements CardsService {
 		String s4 = s1 + s2 + s3;
 		long CardNum = Long.valueOf(s4).longValue();
 		System.out.println(CardNum);
-		return CardNum;
+		newcard.setAssociatedId(associatedId);
+		newcard.setBalance(0);
+		newcard.setCardNumber(CardNum);
+		newcard.setCvv(cvv);
+		newcard.setExp(exp);
+		cardsRepo.save(newcard);
+
 	}
 
 	@Override
@@ -58,6 +81,5 @@ public class CardsServiceImpl implements CardsService {
 		List<Cards> cards = cardsRepo.findAll();
 		return cards;
 	}
-
 
 }
