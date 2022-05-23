@@ -2,7 +2,7 @@ package com.Capstone.BankingApp.entity;
 
 import java.util.List;
 import java.util.Set;
-import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -22,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,17 +32,49 @@ public class User {
 	private String UserName;
 	private String Password;
 	private String FullName;
+	private String status;
+	private String approvedAsBeneficiary = "no";
+
+	public enum Status{
+		ENABLE, DISABLE
+	};
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<AccountInfo> accountinfo;
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<GeneralStaff> generalStaff;
+
 	@Column
     @ElementCollection(targetClass=Integer.class)
 	private List<Integer> BenefactorList;
+
 	@Column
     @ElementCollection(targetClass=Integer.class)
 	private List<Integer> BeneficiaryList;
+	
+	 public String getApprovedAsBeneficiary() {
+		return approvedAsBeneficiary;
+	}
+
+	public void setApprovedAsBeneficiary(String approvedAsBeneficiary) {
+		this.approvedAsBeneficiary = approvedAsBeneficiary;
+	}
+	
+	public void setEnable() {
+		String stat = Status.ENABLE.toString();
+		this.status = stat;
+	}
+	
+	public void setDisable() {
+		String stat = Status.DISABLE.toString();
+		this.status = stat;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
 	
 	public List<Integer> getBenefactorList() {
 		return BenefactorList;
@@ -56,10 +91,10 @@ public class User {
 	public void setBeneficiaryList(List<Integer> beneficiaryList) {
 		BeneficiaryList = beneficiaryList;
 	}
-
+	
 	public User(int userId, String userName, String password, String fullName) {
 		super();
-		this.userId = userId;
+		userId = userId;
 		UserName = userName;
 		Password = password;
 		FullName = fullName;
@@ -72,12 +107,16 @@ public class User {
 		FullName = fullName;
 	}
 
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getUserId() {
 		return userId;
 	}
 
 	public void setUserId(int userId) {
-		this.userId = userId;
+		userId = userId;
 	}
 
 	public String getUserName() {
