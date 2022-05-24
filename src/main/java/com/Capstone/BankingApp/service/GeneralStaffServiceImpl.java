@@ -36,16 +36,17 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
 
     @Override
     public GeneralStaff showStaffInfo(int staffId) {
-    	GeneralStaff StaffFromDB = generalStaffRepo.getById(staffId);
+    	GeneralStaff StaffFromDB = generalStaffRepo.findById(staffId).get();
         return StaffFromDB;
     }
 
     @Override
     public void editStaffUsername(int staffId, GeneralStaff generalStaff) {
     	
-    	GeneralStaff StaffFromDB = generalStaffRepo.getById(generalStaff.getStaffId());
+    	GeneralStaff StaffFromDB = generalStaffRepo.getById(staffId);
     	if(StaffFromDB != null) {
     		StaffFromDB.setUserName(generalStaff.getUserName());
+    		generalStaffRepo.save(StaffFromDB);
     	}else {
     		 System.out.println("Staff Does not Exist");
     	}
@@ -55,9 +56,11 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
     @Override
     public void editStaffPassword(int staffId, GeneralStaff generalStaff) {
 
-    	GeneralStaff StaffFromDB = generalStaffRepo.getById(generalStaff.getStaffId());
+    	GeneralStaff StaffFromDB = generalStaffRepo.getById(staffId);
     	if(StaffFromDB != null) {
     		StaffFromDB.setPassword(generalStaff.getPassword());
+    		generalStaffRepo.save(StaffFromDB);
+
     	}else {
     		 System.out.println("Staff Does not Exist");
     	}
@@ -66,9 +69,10 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
     @Override
     public void editStaffFullName(int staffId, GeneralStaff generalStaff) {
 
-    	GeneralStaff StaffFromDB = generalStaffRepo.getById(generalStaff.getStaffId());
+    	GeneralStaff StaffFromDB = generalStaffRepo.getById(staffId);
     	if(StaffFromDB != null) {
-    		StaffFromDB.setUserName(generalStaff.getUserName());
+    		StaffFromDB.setFullName(generalStaff.getFullName());
+    		generalStaffRepo.save(StaffFromDB);
     	}else {
     		 System.out.println("Staff Does not Exist");
     	}
@@ -78,12 +82,10 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
 	@Override
 	public boolean authenticateStaff(String username, String password) {
 		// TODO Auto-generated method stub
-		List<GeneralStaff> Staffs = generalStaffRepo.findAll();
+		GeneralStaff tempStaff = generalStaffRepo.findByUsername(username);
 		
-		for(GeneralStaff staff: Staffs) {
-			if(staff.getUserName().equals(username) && staff.getPassword().equals(password)) {
-				return true;
-			}
+		if(tempStaff.getUserName().equals(username) && tempStaff.getPassword().equals(password)) {
+			return true;
 		}
 		return false;
 	}
@@ -140,6 +142,7 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
 			if(beneficiary.getApprovedAsBeneficiary().equalsIgnoreCase("no")) {
 				beneficiary.setApprovedAsBeneficiary("yes");
 			}
+			URepo.save(beneficiary);
 		}
 	}
 
@@ -164,11 +167,11 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
 		List<AccountInfo> unApprovedaccts = accountsToBeApproved();
 		
 		for(AccountInfo accts: unApprovedaccts) {
-			for(int i = 0; i <= accountNumber.length; i++) {
+			for(int i = 0; i <= accountNumber.length - 1; i++) {
 				if(accts.getAccountNumber() == accountNumber[i] ) {
 					accts.setApproved("yes");
 				}
-
+				AcctRepo.save(accts);
 			}
 		}
 	}
@@ -186,15 +189,17 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
 		
 		if(userFromDb.getStatus().equals(User.Status.DISABLE.toString())) {
 			userFromDb.setEnable();
+			URepo.save(userFromDb);
 		}else if(userFromDb.getStatus().equals(User.Status.ENABLE.toString())) {
 			userFromDb.setDisable();
+			URepo.save(userFromDb);
 		}
 	}
 
 	@Override
 	public User GetUserById(int userId) {
 		// TODO Auto-generated method stub
-		User UserFromDB = URepo.getById(userId);
+		User UserFromDB = URepo.findById(userId).get();
 		
 		return UserFromDB;
 	}
