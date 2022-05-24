@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CardsRepo extends JpaRepository<Cards, Integer> {
 	@Query(value = "SELECT * FROM Cards WHERE CardNumber = ?1", nativeQuery = true)
