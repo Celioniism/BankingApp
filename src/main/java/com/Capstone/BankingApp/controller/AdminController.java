@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Capstone.BankingApp.entity.Administrator;
 import com.Capstone.BankingApp.entity.GeneralStaff;
 import com.Capstone.BankingApp.service.AdminService;
-
+import org.springframework.web.bind.annotation.PostMapping;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/admin")
@@ -51,7 +51,7 @@ public class AdminController {
 		return AdminService.validateAdmin(username, password);
 	}
 	
-	@PutMapping("/registerGeneralStaff")
+	@PostMapping("/registerGeneralStaff")
 	public String registerGeneralStaff(@RequestBody GeneralStaff staff) {
 		AdminService.registerGeneralStaff(staff);
 		return "Staff Registered";
