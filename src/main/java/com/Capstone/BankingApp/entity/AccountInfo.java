@@ -35,6 +35,7 @@ public class AccountInfo {
 	private String SecurityQuestion;
 
 	private String SecurityAnswer;
+	private String approved = "no";
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 
@@ -49,6 +50,14 @@ public class AccountInfo {
 
 
 
+	public String getApproved() {
+		return approved;
+	}
+
+	public void setApproved(String approved) {
+		this.approved = approved;
+	}
+	
 	public int getUserId() {
 		return UserId;
 	}
