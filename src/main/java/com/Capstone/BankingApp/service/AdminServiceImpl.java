@@ -75,15 +75,14 @@ public class AdminServiceImpl implements AdminService{
 		    return false;
 	}
 
-	@Override
 	public void registerGeneralStaff(GeneralStaff staff) {
-		administratorRepo.getById(staff.getStaffId());
+		
+		GeneralStaff staffa = new GeneralStaff();
+        staffa.setFullName(staff.getFullName());
+        staffa.setUserName(staff.getUserName());
+        staffa.setPassword(staff.getPassword());
 
-        staff.setFullName(staff.getFullName());
-        staff.setUserName(staff.getUserName());
-        staff.setPassword(staff.getPassword());
-
-        generalStaffRepo.save(staff);
+        generalStaffRepo.save(staffa);
 		
 	}
 

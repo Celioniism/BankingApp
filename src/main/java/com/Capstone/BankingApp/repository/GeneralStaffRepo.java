@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GeneralStaffRepo extends JpaRepository<GeneralStaff, Integer> {
+  @Query(value = "SELECT * FROM user WHERE user_name = ?1", nativeQuery = true)
+    GeneralStaff findByUsername(String UserName);
 }
