@@ -113,4 +113,14 @@ public class AccountInfo {
 		this.user = user;
 	}
 
+	public String getApproved() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setApproved(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

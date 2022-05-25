@@ -1,38 +1,54 @@
 package com.Capstone.BankingApp.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Entity
 @Setter
 @AllArgsConstructor
+@ToString
 public class Cards {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long CardNumber;
 	private int AssociatedId;
 	
-	private long CardNumber;
-	
-	private int Exp;
+	private String Exp;
 	
 	private int Cvv;
 	
 	private double Balance;
+	private String CardType;
 	
-	private enum CardType  {
+	private enum cardType  {
 		  DEBIT,
 		  CREDIT
 		};
+		public void setCardDebit() {
+			cardType t1 = cardType.DEBIT;
+			String tr = String.valueOf(t1);
+			this.CardType = tr;
+		}
+
+		public void setCardCredit() {
+			cardType t1 = cardType.CREDIT;
+			String tr = String.valueOf(t1);
+			this.CardType = tr;
+		}	
+		
+		
+		
 		
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Transactions> transaction;
@@ -45,7 +61,7 @@ public class Cards {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cards(int associatedId, long cardNumber, int exp, int cvv, double balance) {
+	public Cards(int associatedId, long cardNumber, String exp, int cvv, double balance) {
 		super();
 		AssociatedId = associatedId;
 		CardNumber = cardNumber;
@@ -54,7 +70,7 @@ public class Cards {
 		Balance = balance;
 	}
 
-	public Cards(long cardNumber, int exp, int cvv, double balance) {
+	public Cards(long cardNumber, String exp, int cvv, double balance) {
 		super();
 		CardNumber = cardNumber;
 		Exp = exp;
@@ -78,11 +94,11 @@ public class Cards {
 		CardNumber = cardNumber;
 	}
 
-	public int getExp() {
+	public String getExp() {
 		return Exp;
 	}
 
-	public void setExp(int exp) {
+	public void setExp(String exp) {
 		Exp = exp;
 	}
 

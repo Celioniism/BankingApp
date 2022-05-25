@@ -1,13 +1,20 @@
 package com.Capstone.BankingApp.service;
 
+import java.util.List;
+
 import com.Capstone.BankingApp.entity.Cards;
 
 public interface CardsService {
-    public Cards showCardDetails(int associatedId);
     
     public void registerCard(Cards card);
     
     public void deleteCard(long cardnumber);
     
-    public Long generateCard();
+    public void generateCard(int associatedId, String Type);
+
+    public List<Cards> showUserCardDetails(int associatedId);
+
+	public List<Cards> showAllCards();
+	
+	public double userTotalBalance(int userId);
 }
