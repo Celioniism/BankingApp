@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountInfoRepo extends JpaRepository<AccountInfo, Integer> {
+     @Query(value = "SELECT * FROM user WHERE user_name = ?1", nativeQuery = true)
     User findByUsername(String userName);
 
 }
