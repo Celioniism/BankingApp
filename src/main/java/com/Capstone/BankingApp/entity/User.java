@@ -94,7 +94,7 @@ public class User {
 	
 	public User(int userId, String userName, String password, String fullName) {
 		super();
-		userId = userId;
+		this.userId = userId;
 		UserName = userName;
 		Password = password;
 		FullName = fullName;
@@ -116,7 +116,7 @@ public class User {
 	}
 
 	public void setUserId(int userId) {
-		userId = userId;
+		this.userId = userId;
 	}
 
 	public String getUserName() {
