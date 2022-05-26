@@ -24,14 +24,14 @@ public class AccountInfoController {
 	AccountInfoService AIS;
 
 	@PutMapping("/editSecurityQuestion/{accountNo}")
-	public String editSecurityQuestion(@PathVariable(name = "accountNo") int accountNo,
+	public String editSecurityQuestion(@PathVariable(name = "accountNo") long accountNo,
 			@RequestBody AccountInfo accountInfo) {
 		AIS.editSecurityQuestion(accountNo, accountInfo);
 		return "Security Question edited";
 	}
 
 	@PutMapping("/editSecurityAnswer/{accountNo}")
-	public String editSecurityAnswer(@PathVariable(name = "accountNo") int accountNo,
+	public String editSecurityAnswer(@PathVariable(name = "accountNo") long accountNo,
 			@RequestBody AccountInfo accountInfo) {
 		AIS.editSecurityAnswer(accountNo, accountInfo);
 		return "Security Answer updated";
@@ -49,7 +49,7 @@ public class AccountInfoController {
 	}
 
 	@GetMapping("/getAccountByAcctNo/{accountNo}")
-	public AccountInfo getAccountByAcctNo(@PathVariable(name = "accountNo") int accountNo) {
+	public AccountInfo getAccountByAcctNo(@PathVariable(name = "accountNo") long accountNo) {
 		return AIS.getAccountByAcctNo(accountNo);
 	}
 
