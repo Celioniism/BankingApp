@@ -11,8 +11,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Capstone.BankingApp.InputClasses.WithdrawalFactory;
 import com.Capstone.BankingApp.InputClasses.DepositFactory;
+import com.Capstone.BankingApp.InputClasses.TransferFactory;
+import com.Capstone.BankingApp.InputClasses.WithdrawalFactory;
 import com.Capstone.BankingApp.entity.Cards;
 import com.Capstone.BankingApp.entity.Transactions;
 import com.Capstone.BankingApp.repository.CardsRepo;
@@ -33,7 +34,11 @@ public class TransactionServiceImpl implements TransactionsService {
 	TransactionsRepo TRR;
 
 	@Override
-	public String Transfer(long fromCardNo, long toCardNo, double amount, String refrence) {
+	public String Transfer(TransferFactory TF) {
+		long fromCardNo = TF.getFromCardNumber();
+		long toCardNo = TF.getToCardNumber();
+		double amount = TF.getAmount();
+		String reference = TF.getReference();
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		String CurrentDate = formatter.format(date);
@@ -56,7 +61,7 @@ public class TransactionServiceImpl implements TransactionsService {
 
 				Transactions fromtr = new Transactions();
 				fromtr.setAmount(0 - amount);
-				fromtr.setReference(refrence);
+				fromtr.setReference(reference);
 				fromtr.setDate_and_time(CurrentDate);
 				fromtr.setTransactionTransfer();
 				fromtr.setCard(fromCard);
@@ -64,7 +69,7 @@ public class TransactionServiceImpl implements TransactionsService {
 
 				Transactions totr = new Transactions();
 				totr.setAmount(amount);
-				totr.setReference(refrence);
+				totr.setReference(reference);
 				totr.setDate_and_time(CurrentDate);
 				totr.setTransactionTransfer();
 				totr.setCard(toCard);
@@ -91,21 +96,25 @@ public class TransactionServiceImpl implements TransactionsService {
 		Cards fromCard = CR.findCardByNumber(fromCardNo);
 		double fcb;
 		fcb = fromCard.getBalance();
-		if (fcb >= amount) {
-			fcb = fcb - amount;
-			fromCard.setBalance(fcb);
-			CR.save(fromCard);
+		if (amount > 0) {
+			if (fcb >= amount) {
+				fcb = fcb - amount;
+				fromCard.setBalance(fcb);
+				CR.save(fromCard);
 
-			Transactions fromtr = new Transactions();
-			fromtr.setAmount(0 - amount);
-			fromtr.setReference("");
-			fromtr.setDate_and_time(CurrentDate);
-			fromtr.setTransactionWithdraw();
-			fromtr.setCard(fromCard);
-			TRR.save(fromtr);
+				Transactions fromtr = new Transactions();
+				fromtr.setAmount(0 - amount);
+				fromtr.setReference("");
+				fromtr.setDate_and_time(CurrentDate);
+				fromtr.setTransactionWithdraw();
+				fromtr.setCard(fromCard);
+				TRR.save(fromtr);
 
-			double withdrawn = amount;
-			return withdrawn;
+				double withdrawn = amount;
+				return withdrawn;
+			} else {
+				return 0;
+			}
 		} else {
 			return 0;
 		}
@@ -114,44 +123,47 @@ public class TransactionServiceImpl implements TransactionsService {
 	@Override
 	public double Deposit(DepositFactory df) {
 		long toCardNo = df.getCardNumber();
-		String memo = df.getMemo();
+		String memo = df.getReference();
 		double amount = df.getAmount();
-		System.out.println("working");
-		Date date = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		String CurrentDate = formatter.format(date);
-		Cards toCard = CR.findCardByNumber(toCardNo);
-		double tcb;
-		tcb = toCard.getBalance();
-		if (toCard.getCardType() != null) {
-			if (toCard.getCardType().equalsIgnoreCase("debit")) {
+		if (amount > 0) {
+			Date date = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			String CurrentDate = formatter.format(date);
+			Cards toCard = CR.findCardByNumber(toCardNo);
+			double tcb;
+			tcb = toCard.getBalance();
+			if (toCard.getCardType() != null) {
+				if (toCard.getCardType().equalsIgnoreCase("debit")) {
+					tcb = tcb + amount;
+					toCard.setBalance(tcb);
+					CR.save(toCard);
+				} else if (toCard.getCardType().equalsIgnoreCase("credit")) {
+					if (amount <= tcb) {
+						tcb = tcb - amount;
+						toCard.setBalance(tcb);
+					} else {
+						tcb = 0;
+						double temp = tcb - amount;
+						amount = amount + temp;
+						toCard.setBalance(tcb);
+					}
+				}
+			} else {
 				tcb = tcb + amount;
 				toCard.setBalance(tcb);
-				CR.save(toCard);
-			} else if (toCard.getCardType().equalsIgnoreCase("credit")) {
-				if (amount <= tcb) {
-					tcb = tcb - amount;
-					toCard.setBalance(tcb);
-				} else {
-					tcb = 0;
-					double temp = tcb - amount;
-					amount = amount + temp;
-					toCard.setBalance(tcb);
-				}
 			}
-		}else {
-			tcb = tcb + amount;
-			toCard.setBalance(tcb);
+			Transactions totr = new Transactions();
+			totr.setAmount(amount);
+			totr.setReference(memo);
+			totr.setDate_and_time(CurrentDate);
+			totr.setTransactionDeposit();
+			totr.setCard(toCard);
+			TRR.save(totr);
+			double deposited = amount;
+			return deposited;
+		} else {
+			return 0;
 		}
-		Transactions totr = new Transactions();
-		totr.setAmount(amount);
-		totr.setReference(memo);
-		totr.setDate_and_time(CurrentDate);
-		totr.setTransactionDeposit();
-		totr.setCard(toCard);
-		TRR.save(totr);
-		double deposited = amount;
-		return deposited;
 	}
 
 	@Override

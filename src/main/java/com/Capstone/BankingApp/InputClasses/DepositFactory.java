@@ -10,6 +10,6 @@ public class DepositFactory {
 
 	private double amount;
 	private long CardNumber;
-	private String memo;
+	private String reference;
 
 }

@@ -68,7 +68,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public boolean validateAdmin(String username, String password) {
-        Administrator temp = administratorRepo.findByUserName(username);
+        Administrator temp = administratorRepo.findByUsername(username);
         if(temp.getUserName()==username && temp.getUserPassword()==password)
             return true;
         else

@@ -94,7 +94,7 @@ public class User {
 	
 	public User(int userId, String userName, String password, String fullName) {
 		super();
-		userId = userId;
+		this.userId = userId;
 		UserName = userName;
 		Password = password;
 		FullName = fullName;
@@ -107,16 +107,13 @@ public class User {
 		FullName = fullName;
 	}
 
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public int getUserId() {
 		return userId;
 	}
 
 	public void setUserId(int userId) {
-		userId = userId;
+		this.userId = userId;
 	}
 
 	public String getUserName() {
@@ -146,9 +143,12 @@ public class User {
 	public Set<AccountInfo> getAccountinfo() {
 		return accountinfo;
 	}
+	public void setAccountInfo(AccountInfo aif) {
+		this.accountinfo.add(aif);
+	}
 
 	public void setAccountinfo(Set<AccountInfo> accountinfo) {
-		this.accountinfo = accountinfo;
+		this.accountinfo.addAll(accountinfo);
 	}
 
 	public Set<GeneralStaff> getGeneralStaff() {

@@ -31,7 +31,8 @@ public class AccountInfo {
 	private Long AccountNumber;
 	private int UserId;
 	private int BeneficiaryId;
-
+	private String FistName;
+	private String LastName;
 	private String SecurityQuestion;
 
 	private String SecurityAnswer;
@@ -122,14 +123,6 @@ public class AccountInfo {
 		this.user = user;
 	}
 
-	public String getApproved() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public void setApproved(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -91,7 +91,7 @@ public class GeneralStaffServiceImpl implements GeneralStaffService{
 	}
 
 	@Override
-	public List<Transactions> getTransactions(int acctId) {
+	public List<Transactions> getTransactions(long acctId) {
 		// TODO Auto-generated method stub
 		AccountInfo TransAcct = AcctRepo.getById(acctId);
 		Set<Cards> card = TransAcct.getCard();

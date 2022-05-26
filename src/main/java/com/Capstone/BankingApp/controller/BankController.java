@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Capstone.BankingApp.InputClasses.WithdrawalFactory;
 import com.Capstone.BankingApp.InputClasses.DepositFactory;
+import com.Capstone.BankingApp.InputClasses.TransferFactory;
+import com.Capstone.BankingApp.InputClasses.WithdrawalFactory;
 import com.Capstone.BankingApp.entity.Cards;
 import com.Capstone.BankingApp.entity.Transactions;
 import com.Capstone.BankingApp.entity.User;
@@ -92,39 +93,6 @@ public class BankController {
 	public String generateNewCard(@PathVariable("userId") int userId, @RequestBody String Type) {
 		CardsS.generateCard(userId, Type);
 		return "added successfuly!";
-	}
-
-	@GetMapping({ "/getUserTransactions/{userId}" })
-	public List<Transactions> getUserTransactions(@PathVariable("userId") int userId) {
-		List<Transactions> Tlist = TS.userTransactions(userId);
-		return Tlist;
-	}
-
-	@GetMapping({ "/userTotalBalance/{userId}" })
-	public double userTotalBal(@PathVariable("userId") int userId) {
-		double bal = (CardsS.userTotalBalance(userId));
-		return bal;
-	}
-
-	@PostMapping({ "/Deposit" })
-	public void userDeposit(@RequestBody DepositFactory df) {
-
-		TS.Deposit(df);
-	}
-
-	@PostMapping({ "/Withdraw" })
-	public String userWithdraw(@RequestBody WithdrawalFactory WF) {
-		double result = TS.Withdraw(WF);
-		if(result>0) {
-			return result + " dollars successfully withdrawn";
-		}else {
-			return "unable to withdraw";
-		}
-	}
-	
-	@PostMapping({ "/Transfer" })
-	public String userTransfer(@RequestBody  long tocard, @RequestBody  long fromcard, @RequestBody  String amount, @RequestBody String mmemo) {
-		return "successfuly transfered";
 	}
 
 }

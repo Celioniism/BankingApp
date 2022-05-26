@@ -5,8 +5,9 @@ package com.Capstone.BankingApp.service;
 
 import java.util.List;
 
-import com.Capstone.BankingApp.InputClasses.WithdrawalFactory;
 import com.Capstone.BankingApp.InputClasses.DepositFactory;
+import com.Capstone.BankingApp.InputClasses.TransferFactory;
+import com.Capstone.BankingApp.InputClasses.WithdrawalFactory;
 import com.Capstone.BankingApp.entity.Transactions;
 
 /**
@@ -17,7 +18,7 @@ import com.Capstone.BankingApp.entity.Transactions;
 
 public interface TransactionsService {
 	
-	public String Transfer(long fromCardNo, long toCardNo, double amount, String reference);
+	public String Transfer(TransferFactory TF);
 	
 	public double Withdraw(WithdrawalFactory WF);
 	public double Deposit(DepositFactory df);

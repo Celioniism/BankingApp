@@ -16,7 +16,7 @@ public interface GeneralStaffService {
    
     public boolean authenticateStaff(String username,String password);
     
-    public List<Transactions> getTransactions(int acctId);
+    public List<Transactions> getTransactions(long acctId);
     
     public List<User> BeneficiaryToBeApproved();
     

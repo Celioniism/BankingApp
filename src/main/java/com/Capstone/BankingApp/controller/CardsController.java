@@ -18,11 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Capstone.BankingApp.entity.Cards;
 import com.Capstone.BankingApp.service.CardsService;
 
-
-
 /**
  * @author Dekun
- * @Date 23 May 2022	
+ * @Date 23 May 2022
  *
  */
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -31,33 +29,32 @@ import com.Capstone.BankingApp.service.CardsService;
 public class CardsController {
 	@Autowired
 	CardsService cardservice;
-	
-	
-	
-	@GetMapping(value = "/showAllCards" )
+
+	@GetMapping(value = "/showAllCards")
 	public List<Cards> showAllCards() {
 		return cardservice.showAllCards();
 	}
-	
+
 	@PostMapping(value = "/registerCard")
 	public void registertCard(@RequestBody Cards card) {
 		cardservice.registerCard(card);
 	}
-	
+
 	@DeleteMapping(value = "/deleteCard/{cardnumber}")
 	public void deleteCard(@PathVariable("cardnumber") long cardnumber) {
 		cardservice.deleteCard(cardnumber);
 	}
-	
-	@GetMapping(value = "/generatecard")
-	public Long generateCard() {
-		return cardservice.generateCard();
+
+	@PostMapping({ "/generateNewCard/{userId}" })
+	public String generateNewCard(@PathVariable("userId") int userId, @RequestBody String Type) {
+		cardservice.generateCard(userId, Type);
+		return "added successfuly!";
 	}
+
 	@GetMapping({ "/showUserCardDetails/{userId}" })
-    public List<Cards> showUserCardDetails(@PathVariable("associatedId")int associatedId) {
-        List<Cards> cards = cardservice.showUserCardDetails(associatedId);
-        return cards;
-    }
-	
-	
+	public List<Cards> showUserCardDetails(@PathVariable("associatedId") int associatedId) {
+		List<Cards> cards = cardservice.showUserCardDetails(associatedId);
+		return cards;
+	}
+
 }
