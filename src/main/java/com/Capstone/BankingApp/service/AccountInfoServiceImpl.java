@@ -57,11 +57,12 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 		return accountInfoRepo.findAll();
 	}
 
-	@Override
-	public AccountInfo getAccountByAcctNo(long accountNo) {
-		return accountInfoRepo.getById(accountNo);
-	}
+	
 
+	public AccountInfo getAccountByAcctNo(int accountNo) {
+		Long a = new Long((long)accountNo);
+		return accountInfoRepo.findById(a).get();
+	}
 	@Override
 	public void createAccount(AccountInfo accountInfo) {
 		int lock = 0;
