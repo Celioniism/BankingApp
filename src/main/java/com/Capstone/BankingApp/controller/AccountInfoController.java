@@ -50,7 +50,7 @@ public class AccountInfoController {
 	}
 
 	@GetMapping("/getAccountByAcctNo/{accountNo}")
-	public AccountInfo getAccountByAcctNo(@PathVariable(name = "accountNo") int accountNo) {
+	public AccountInfo getAccountByAcctNo(@PathVariable(name = "accountNo") long accountNo) {
 		return AIS.getAccountByAcctNo(accountNo);
 	}
 
