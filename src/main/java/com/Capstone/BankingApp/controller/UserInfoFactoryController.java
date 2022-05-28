@@ -29,12 +29,7 @@ public class UserInfoFactoryController {
 	public UserInfoFactory showUserInfoFactoryDetails(@PathVariable("userId") int userId) {
 		return UIFS.showUserInfoFactoryDetails(userId);
 	}
-	@PostMapping({ "/signup" })
-	public String postSignup(@RequestBody UserInfoFactory uif) {
-		//System.out.println(uif);
-		UIFS.signup(uif);
-		return "postSignup";
-	}
+
 	
 
 }

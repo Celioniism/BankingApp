@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Capstone.BankingApp.InputClasses.UserStats;
 import com.Capstone.BankingApp.entity.AccountInfo;
 import com.Capstone.BankingApp.service.AccountInfoService;
 
@@ -24,14 +25,14 @@ public class AccountInfoController {
 	AccountInfoService AIS;
 
 	@PutMapping("/editSecurityQuestion/{accountNo}")
-	public String editSecurityQuestion(@PathVariable(name = "accountNo") int accountNo,
+	public String editSecurityQuestion(@PathVariable(name = "accountNo") long accountNo,
 			@RequestBody AccountInfo accountInfo) {
 		AIS.editSecurityQuestion(accountNo, accountInfo);
 		return "Security Question edited";
 	}
 
 	@PutMapping("/editSecurityAnswer/{accountNo}")
-	public String editSecurityAnswer(@PathVariable(name = "accountNo") int accountNo,
+	public String editSecurityAnswer(@PathVariable(name = "accountNo") long accountNo,
 			@RequestBody AccountInfo accountInfo) {
 		AIS.editSecurityAnswer(accountNo, accountInfo);
 		return "Security Answer updated";
@@ -57,5 +58,10 @@ public class AccountInfoController {
 	public String createAccount( @RequestBody AccountInfo accountInfo) {
 		AIS.createAccount(accountInfo);
 		return "Account Created";
+	}
+	
+	@GetMapping("/Analytics/{userId}")
+	public List<UserStats> viewStats(@PathVariable(name = "userId") int userId) {
+		return AIS.getStats(userId);
 	}
 }

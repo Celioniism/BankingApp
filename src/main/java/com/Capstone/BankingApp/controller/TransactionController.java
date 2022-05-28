@@ -56,18 +56,13 @@ public class TransactionController {
 	}
 
 	@PostMapping({ "/Withdraw" })
-	public String userWithdraw(@RequestBody WithdrawalFactory WF) {
-		double result = TS.Withdraw(WF);
-		if (result > 0) {
-			return result + " dollars successfully withdrawn";
-		} else {
-			return "unable to withdraw";
-		}
+	public void userWithdraw(@RequestBody WithdrawalFactory WF) {
+		TS.Withdraw(WF);
 	}
 
 	@PostMapping({ "/Transfer" })
 	public String userTransfer(@RequestBody TransferFactory TF) {
-		System.out.println(TF.toString());
+
 		TS.Transfer(TF);
 		return "successfuly transfered";
 	}

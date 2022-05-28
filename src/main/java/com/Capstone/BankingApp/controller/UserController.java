@@ -50,10 +50,10 @@ public class UserController {
 		us.saveUser(user);
 	}
 	
-	@GetMapping(value = "/authenticateUser/{userName}/{password}")
-	public boolean authenticateUser(@PathVariable("userName") String userName,@PathVariable("password") String password ) {
-		return us.authenticateUser(userName, password);
-	}
+//	@GetMapping(value = "/authenticateUser/{userName}/{password}")
+//	public boolean authenticateUser(@PathVariable("userName") String userName,@PathVariable("password") String password ) {
+//		return us.authenticateUser(userName, password);
+//	}
 	@GetMapping(value = "/getUserById/{userId}")
 	public User getUserById(@PathVariable("userId") int userId) {
 		return us.getUserById(userId);

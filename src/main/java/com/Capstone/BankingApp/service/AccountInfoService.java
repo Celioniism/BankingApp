@@ -2,8 +2,9 @@ package com.Capstone.BankingApp.service;
 
 import java.util.List;
 
+import com.Capstone.BankingApp.InputClasses.UserSD;
+import com.Capstone.BankingApp.InputClasses.UserStats;
 import com.Capstone.BankingApp.entity.AccountInfo;
-import com.Capstone.BankingApp.entity.User;
 
 public interface AccountInfoService {
 
@@ -19,8 +20,9 @@ public interface AccountInfoService {
 
 	void createAccount(AccountInfo accountInfo);
     
- 
-    
+	List<UserStats> getStats(int userId);   
+	
+	AccountInfo registerFactory(AccountInfo AI);
+	
+	UserSD returnUserdata(String userid, String password);
 }
-
-

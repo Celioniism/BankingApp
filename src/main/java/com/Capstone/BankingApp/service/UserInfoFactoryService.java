@@ -5,5 +5,5 @@ import com.Capstone.BankingApp.entity.UserInfoFactory;
 public interface UserInfoFactoryService {
 	public UserInfoFactory showUserInfoFactoryDetails(int userId);
 
-	public void signup(UserInfoFactory userIF);
+	public boolean signup(UserInfoFactory userIF, String Type);
 }

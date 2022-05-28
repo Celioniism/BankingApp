@@ -19,11 +19,13 @@ import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 	@Id
@@ -35,47 +37,51 @@ public class User {
 	private String status;
 	private String approvedAsBeneficiary = "no";
 
-	public enum Status{
+	public enum Status {
 		ENABLE, DISABLE
 	};
 
+	public User(String uname, String pass) {
+		this.UserName = uname;
+		this.Password = pass;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<AccountInfo> accountinfo;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<GeneralStaff> generalStaff;
 
 	@Column
-    @ElementCollection(targetClass=Integer.class)
+	@ElementCollection(targetClass = Integer.class)
 	private List<Integer> BenefactorList;
 
 	@Column
-    @ElementCollection(targetClass=Integer.class)
+	@ElementCollection(targetClass = Integer.class)
 	private List<Integer> BeneficiaryList;
-	
-	 public String getApprovedAsBeneficiary() {
+
+	public String getApprovedAsBeneficiary() {
 		return approvedAsBeneficiary;
 	}
 
 	public void setApprovedAsBeneficiary(String approvedAsBeneficiary) {
 		this.approvedAsBeneficiary = approvedAsBeneficiary;
 	}
-	
+
 	public void setEnable() {
 		String stat = Status.ENABLE.toString();
 		this.status = stat;
 	}
-	
+
 	public void setDisable() {
 		String stat = Status.DISABLE.toString();
 		this.status = stat;
 	}
-	
+
 	public String getStatus() {
 		return status;
 	}
-	
-	
+
 	public List<Integer> getBenefactorList() {
 		return BenefactorList;
 	}
@@ -91,7 +97,7 @@ public class User {
 	public void setBeneficiaryList(List<Integer> beneficiaryList) {
 		BeneficiaryList = beneficiaryList;
 	}
-	
+
 	public User(int userId, String userName, String password, String fullName) {
 		super();
 		this.userId = userId;
@@ -106,7 +112,6 @@ public class User {
 		Password = password;
 		FullName = fullName;
 	}
-
 
 	public int getUserId() {
 		return userId;
@@ -143,11 +148,12 @@ public class User {
 	public Set<AccountInfo> getAccountinfo() {
 		return accountinfo;
 	}
+
 	public void setAccountInfo(AccountInfo aif) {
-		this.accountinfo.add(aif);
+		this.accountinfo =(Set<AccountInfo>) aif;
 	}
 
-	public void setAccountinfo(Set<AccountInfo> accountinfo) {
+	public void setAccountinfo(List<AccountInfo> accountinfo) {
 		this.accountinfo.addAll(accountinfo);
 	}
 

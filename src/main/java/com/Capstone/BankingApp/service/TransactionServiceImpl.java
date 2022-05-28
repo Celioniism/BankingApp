@@ -42,7 +42,7 @@ public class TransactionServiceImpl implements TransactionsService {
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		String CurrentDate = formatter.format(date);
-
+		System.out.println(TF.toString());
 		try {
 
 			Cards fromCard = CR.findCardByNumber(fromCardNo);
@@ -160,6 +160,7 @@ public class TransactionServiceImpl implements TransactionsService {
 			totr.setCard(toCard);
 			TRR.save(totr);
 			double deposited = amount;
+			
 			return deposited;
 		} else {
 			return 0;

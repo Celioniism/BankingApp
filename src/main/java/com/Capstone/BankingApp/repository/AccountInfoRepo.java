@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface AccountInfoRepo extends JpaRepository<AccountInfo, Long> {
      @Query(value = "SELECT * FROM user WHERE user_name = ?1", nativeQuery = true)
     User findByUsername(String userName);
-
+     @Query(value = "SELECT * FROM account_info WHERE user_id = ?1", nativeQuery = true)
+     AccountInfo findByUserId(int userId);
 }

@@ -10,11 +10,13 @@ public interface CardsService {
     
     public void deleteCard(long cardnumber);
     
-    public void generateCard(int associatedId, String Type);
+    public Cards generateCard(int associatedId, String Type);
 
     public List<Cards> showUserCardDetails(int associatedId);
 
 	public List<Cards> showAllCards();
 	
 	public double userTotalBalance(int userId);
+	
+	public Cards generateCardReturn(int associatedId, String Type);
 }

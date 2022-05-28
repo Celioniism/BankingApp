@@ -5,28 +5,25 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class AccountInfo {
 
-	
-	
 	@Id
 	private Long AccountNumber;
 	private int UserId;
@@ -37,7 +34,7 @@ public class AccountInfo {
 
 	private String SecurityAnswer;
 	private String approved = "no";
-
+	private String accessLevel;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 
 	private Set<GeneralStaff> staff;
@@ -49,8 +46,6 @@ public class AccountInfo {
 	@ManyToOne
 	private User user;
 
-
-
 	public String getApproved() {
 		return approved;
 	}
@@ -58,7 +53,7 @@ public class AccountInfo {
 	public void setApproved(String approved) {
 		this.approved = approved;
 	}
-	
+
 	public int getUserId() {
 		return UserId;
 	}
@@ -72,7 +67,7 @@ public class AccountInfo {
 	}
 
 	public void setAccountNumber(Long accountNumber) {
-	AccountNumber = accountNumber;
+		AccountNumber = accountNumber;
 	}
 
 	public int getBeneficiaryId() {
@@ -114,7 +109,9 @@ public class AccountInfo {
 	public void setCard(Set<Cards> card) {
 		this.card = card;
 	}
-
+	public void setCardd(Cards card) {
+		this.card.add(card);
+	}
 	public User getUser() {
 		return user;
 	}
@@ -122,7 +119,5 @@ public class AccountInfo {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
 
 }

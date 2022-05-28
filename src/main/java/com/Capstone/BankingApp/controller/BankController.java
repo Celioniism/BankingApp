@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Capstone.BankingApp.InputClasses.DepositFactory;
-import com.Capstone.BankingApp.InputClasses.TransferFactory;
-import com.Capstone.BankingApp.InputClasses.WithdrawalFactory;
+import com.Capstone.BankingApp.InputClasses.UserSD;
 import com.Capstone.BankingApp.entity.Cards;
-import com.Capstone.BankingApp.entity.Transactions;
 import com.Capstone.BankingApp.entity.User;
 import com.Capstone.BankingApp.entity.UserInfoFactory;
 import com.Capstone.BankingApp.repository.UserRepo;
+import com.Capstone.BankingApp.service.AccountInfoService;
 import com.Capstone.BankingApp.service.CardsService;
 import com.Capstone.BankingApp.service.TransactionsService;
 import com.Capstone.BankingApp.service.UserInfoFactoryService;
+import com.Capstone.BankingApp.service.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -36,37 +35,24 @@ public class BankController {
 	UserInfoFactoryService UIFS;
 
 	@Autowired
+	AccountInfoService AIS;
+	@Autowired
 	CardsService CardsS;
 
 	@Autowired
 	UserRepo Urepo;
 
-	@GetMapping({ "/ ", "/index" })
-	public String getIndex() {
-		return "index";
+	@Autowired
+	UserService US;
+
+	@PostMapping({ "/login" })
+	public String loginPage(@RequestBody User user) {
+		return US.authenticateUser(user.getUserName(), user.getPassword());
 	}
 
-	@GetMapping({ "/login" })
-	public String loginPage() {
-		return "login";
-	}
-
-	@GetMapping({ "/views/userprofile" })
-	public String userProfile(Model model) {
-
-		return "views/userprofile";
-	}
-
-	@GetMapping({ "/signup" })
-	public String getSignup() {
-		return "getSignup";
-	}
-
-	@PostMapping({ "/signup" })
-	public String postSignup(@RequestBody UserInfoFactory uif) {
-		System.out.println(uif);
-		UIFS.signup(uif);
-		return "postSignup";
+	@PostMapping({ "/signup/{type}" })
+	public boolean postSignup(@RequestBody UserInfoFactory uif, @PathVariable("type") String type) {
+		return UIFS.signup(uif, type);
 	}
 
 	@GetMapping({ "/viewUsers" })
@@ -93,6 +79,18 @@ public class BankController {
 	public String generateNewCard(@PathVariable("userId") int userId, @RequestBody String Type) {
 		CardsS.generateCard(userId, Type);
 		return "added successfuly!";
+	}
+
+	@PostMapping({ "/getUserSD" })
+	public UserSD getUserSD(@RequestBody User user) {
+		System.out.println("working");
+		System.out.println(AIS.returnUserdata(user.getUserName(), user.getPassword()));
+		return AIS.returnUserdata(user.getUserName(), user.getPassword());
+	}
+	
+	@PostMapping({ "/getUserId" })
+	public int getUserId(@RequestBody User user) {
+		return US.returnUserId(user.getUserName(), user.getPassword());
 	}
 
 }
