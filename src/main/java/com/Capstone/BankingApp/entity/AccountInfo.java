@@ -109,9 +109,11 @@ public class AccountInfo {
 	public void setCard(Set<Cards> card) {
 		this.card = card;
 	}
+
 	public void setCardd(Cards card) {
 		this.card.add(card);
 	}
+
 	public User getUser() {
 		return user;
 	}

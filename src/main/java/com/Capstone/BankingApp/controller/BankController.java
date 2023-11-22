@@ -23,7 +23,7 @@ import com.Capstone.BankingApp.service.TransactionsService;
 import com.Capstone.BankingApp.service.UserInfoFactoryService;
 import com.Capstone.BankingApp.service.UserService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins="*",maxAge = 3600)
 @RestController
 @RequestMapping("/api")
 public class BankController {
@@ -83,9 +83,12 @@ public class BankController {
 
 	@PostMapping({ "/getUserSD" })
 	public UserSD getUserSD(@RequestBody User user) {
-		System.out.println("working");
-		System.out.println(AIS.returnUserdata(user.getUserName(), user.getPassword()));
 		return AIS.returnUserdata(user.getUserName(), user.getPassword());
+	}
+	
+	@GetMapping({ "/getUserSD/{userId}" })
+	public UserSD getUserSD(@PathVariable("userId") int userId) {
+		return AIS.returnUserdataId(userId);
 	}
 	
 	@PostMapping({ "/getUserId" })

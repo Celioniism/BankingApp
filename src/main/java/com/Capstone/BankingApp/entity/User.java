@@ -149,6 +149,7 @@ public class User {
 		return accountinfo;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setAccountInfo(AccountInfo aif) {
 		this.accountinfo =(Set<AccountInfo>) aif;
 	}

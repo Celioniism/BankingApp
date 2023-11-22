@@ -15,7 +15,7 @@ import com.Capstone.BankingApp.entity.Administrator;
 import com.Capstone.BankingApp.entity.GeneralStaff;
 import com.Capstone.BankingApp.service.AdminService;
 import org.springframework.web.bind.annotation.PostMapping;
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins="*",maxAge = 3600)
 @RestController
 @RequestMapping("/api/admin")
 public class AdminController {

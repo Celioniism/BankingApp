@@ -22,7 +22,7 @@ import com.Capstone.BankingApp.service.UserService;
  * @Date 23 May 2022	
  *
  */
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins="*",maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 public class UserController {

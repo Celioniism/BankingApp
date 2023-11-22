@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Capstone.BankingApp.entity.AccountInfo;
@@ -18,7 +18,7 @@ import com.Capstone.BankingApp.entity.Transactions;
 import com.Capstone.BankingApp.entity.User;
 import com.Capstone.BankingApp.service.GeneralStaffService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins="*",maxAge = 3600)
 @RestController
 @RequestMapping("/api/staff")
 public class GeneralStaffController {

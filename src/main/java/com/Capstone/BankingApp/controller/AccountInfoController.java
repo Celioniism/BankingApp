@@ -16,7 +16,7 @@ import com.Capstone.BankingApp.InputClasses.UserStats;
 import com.Capstone.BankingApp.entity.AccountInfo;
 import com.Capstone.BankingApp.service.AccountInfoService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins="*",maxAge = 3600)
 @RestController
 @RequestMapping("/api/accountInfo")
 public class AccountInfoController {

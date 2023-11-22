@@ -75,10 +75,12 @@ public class GeneralStaff {
 
 
 	public void setEnableStaff() {
+		@SuppressWarnings("unused")
 		enableDisableStaff enable = enableDisableStaff.ENABLE;
 	}
 
 	public void setDisableStaff() {
+		@SuppressWarnings("unused")
 		enableDisableStaff disable = enableDisableStaff.DISABLE;
 	}
 

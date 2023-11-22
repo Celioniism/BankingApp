@@ -2,10 +2,7 @@ package com.Capstone.BankingApp.service;
 
 import com.Capstone.BankingApp.entity.User;
 
-import com.Capstone.BankingApp.entity.UserInfoFactory;
 import com.Capstone.BankingApp.repository.UserRepo;
-
-import antlr.collections.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

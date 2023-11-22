@@ -66,12 +66,6 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 		return accountInfoRepo.findAll();
 	}
 
-	
-
-	public AccountInfo getAccountByAcctNo(int accountNo) {
-		Long a = new Long((long)accountNo);
-		return accountInfoRepo.findById(a).get();
-	}
 	@Override
 	public void createAccount(AccountInfo accountInfo) {
 		int lock = 0;
@@ -266,7 +260,23 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 		sd.setFirstName(ai.getFistName());
 		sd.setLastName(ai.getLastName());
 		sd.setUsername(username);
-		System.out.println(sd.toString());
 		return sd;
+	}
+
+	public UserSD returnUserdataId(int userId) {
+		User u = userRepo.findById(userId).get();
+		AccountInfo ai = accountInfoRepo.findByUserId(u.getUserId());
+		UserSD sd = new UserSD();
+		sd.setAccessLevel(ai.getAccessLevel());
+		sd.setFirstName(ai.getFistName());
+		sd.setLastName(ai.getLastName());
+		sd.setUsername(u.getUserName());
+		return sd;
+	}
+
+	@Override
+	public AccountInfo getAccountByAcctNo(long accountNo) {
+		return accountInfoRepo.findById(accountNo).get();
+
 	}
 }

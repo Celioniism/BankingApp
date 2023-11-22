@@ -26,7 +26,7 @@ public interface GeneralStaffService {
     public List<AccountInfo> accountsToBeApproved();
     
     
-    public void approveCustAccounts(long[] accountNumber);
+    public void approveCustAccounts(long... accountNumber);
     
     public  List<User> getAllUsers();
     

@@ -19,10 +19,12 @@ public interface AccountInfoService {
 	AccountInfo getAccountByAcctNo(long accountNo);
 
 	void createAccount(AccountInfo accountInfo);
-    
-	List<UserStats> getStats(int userId);   
-	
+
+	List<UserStats> getStats(int userId);
+
 	AccountInfo registerFactory(AccountInfo AI);
-	
+
 	UserSD returnUserdata(String userid, String password);
+
+	UserSD returnUserdataId(int userId);
 }
